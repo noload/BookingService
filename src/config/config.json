@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "vaibhav@123K",
+    "database": "booking_db_dev",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

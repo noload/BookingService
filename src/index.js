@@ -3,7 +3,7 @@ const podyParser = require("body-parser");
 const bodyParser = require("body-parser");
 const app = express();
 
-const { PORT } = require("./config/serverConfig");
+const { PORT, flight_service_path } = require("./config/serverConfig");
 
 const apiRoute = require("./router/index");
 
@@ -16,9 +16,11 @@ const setupAndStartServer = () => {
   app.listen(PORT, () => {
     console.log(`server started at ${PORT}`);
 
-    if (process.env.DB_SYNC) {
-      db.sequelize.sync({ alert: true });
-    }
+    console.log(flight_service_path);
+
+    // if (process.env.DB_SYNC) {
+    //   db.sequelize.sync({ alert: true });
+    // }
   });
 };
 

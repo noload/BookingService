@@ -37,6 +37,56 @@ class BookingRepository {
       );
     }
   }
+
+  async updateBooking(bookingId, data) {
+    try {
+      const booking = await Booking.update(data, {
+        where: {
+          id: bookingId,
+        },
+      });
+      return booking;
+    } catch (error) {
+      throw new AppError(
+        "Reppository Error",
+        "Cannot Update booking",
+        "There was some issue while updating booking please try again ",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  async getAllBookings() {
+    try {
+      const bookings = await Booking.findAll();
+      return bookings;
+    } catch (error) {
+      throw new AppError(
+        "Reppository Error",
+        "Cannot Get all bookings",
+        "There was some issue while getting booking details please try again ",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  async getBooking(bookingId) {
+    try {
+      const bookings = await Booking.findOne({
+        where: {
+          id: bookingId,
+        },
+      });
+      return bookings;
+    } catch (error) {
+      throw new AppError(
+        "Reppository Error",
+        "Cannot Get booking details",
+        "There was some issue while getting booking detail please try again ",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
 }
 
 module.exports = BookingRepository;

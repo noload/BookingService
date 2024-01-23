@@ -24,6 +24,69 @@ const create = async (req, res) => {
   }
 };
 
+const update = async (req, res) => {
+  try {
+    const resp = await bookingService.updateBooking(req.params.id, req.body);
+
+    return res.status(StatusCodes.OK).json({
+      message: "Successfully updated  booking",
+      success: true,
+      err: {},
+      data: resp,
+    });
+  } catch (error) {
+    return res.status(error.statusCode).json({
+      message: error.message,
+      success: false,
+      err: error.explanation,
+      data: {},
+    });
+  }
+};
+
+const getAll = async (req, res) => {
+  try {
+    const resp = await bookingService.getAll();
+
+    return res.status(StatusCodes.OK).json({
+      message: "Successfully fetched  booking",
+      success: true,
+      err: {},
+      data: resp,
+    });
+  } catch (error) {
+    return res.status(error.statusCode).json({
+      message: error.message,
+      success: false,
+      err: error.explanation,
+      data: {},
+    });
+  }
+};
+
+const get = async (req, res) => {
+  try {
+    const resp = await bookingService.get(req.params.id);
+
+    return res.status(StatusCodes.OK).json({
+      message: "Successfully fetched  booking  detail",
+      success: true,
+      err: {},
+      data: resp,
+    });
+  } catch (error) {
+    return res.status(error.statusCode).json({
+      message: error.message,
+      success: false,
+      err: error.explanation,
+      data: {},
+    });
+  }
+};
+
 module.exports = {
   create,
+  update,
+  getAll,
+  get,
 };

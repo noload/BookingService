@@ -42,6 +42,45 @@ class BookingService {
       throw new ServiceError();
     }
   }
+
+  async updateBooking(flightId, data) {
+    try {
+      const booking = await this.bookingRepository.updateBooking(
+        flightId,
+        data
+      );
+      return booking;
+    } catch (error) {
+      if (error.name == "RepositoryError" || error.name == "ValidationError") {
+        throw error;
+      }
+      throw new ServiceError();
+    }
+  }
+
+  async getAll() {
+    try {
+      const resp = this.bookingRepository.getAllBookings();
+      return resp;
+    } catch (error) {
+      if (error.name == "RepositoryError" || error.name == "ValidationError") {
+        throw error;
+      }
+      throw new ServiceError();
+    }
+  }
+
+  async get(bookingId) {
+    try {
+      const resp = this.bookingRepository.getBooking(bookingId);
+      return resp;
+    } catch (error) {
+      if (error.name == "RepositoryError" || error.name == "ValidationError") {
+        throw error;
+      }
+      throw new ServiceError();
+    }
+  }
 }
 
 module.exports = BookingService;
